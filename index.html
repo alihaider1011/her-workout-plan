@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Her Strength & Wellness Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green-dark: #15271a;
+    --green-mid: #1e3a26;
+    --green-accent: #2e7d5c;
+    --green-light: #9fd4a7;
+    --cream: #f8f8f4;
+    --white: #ffffff;
+    --border: #e4e4dc;
+    --text: #1a1a1a;
+    --muted: #888;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+  .pf { font-family: 'Playfair Display', Georgia, serif; }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(150deg, #15271a 0%, #1e3a26 60%, #152318 100%);
+    padding: 44px 20px 36px;
+    position: relative; overflow: hidden;
+  }
+  .header-blob1 { position:absolute; top:-50px; right:-50px; width:220px; height:220px; border-radius:50%; background:rgba(255,255,255,0.035); }
+  .header-blob2 { position:absolute; bottom:-70px; left:-30px; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,0.025); }
+  .header-inner { position:relative; z-index:1; max-width:680px; margin:0 auto; }
+  .header-eyebrow { color:#8abe96; font-size:10px; letter-spacing:3.5px; text-transform:uppercase; margin-bottom:10px; }
+  .header h1 { color:#fff; font-size:32px; font-weight:700; line-height:1.15; margin-bottom:8px; }
+  .header h1 em { color:#9fd4a7; font-style:italic; }
+  .header-sub { color:#6a9e74; font-size:13px; margin-bottom:24px; }
+  .pills { display:flex; flex-wrap:wrap; gap:8px; }
+  .pill { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:20px; padding:5px 14px; font-size:12px; color:#c8e6cc; }
+  .pill span { color:#7aad82; margin-right:5px; }
+
+  /* TABS */
+  .tabs { background:#fff; border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
+  .tabs-inner { max-width:680px; margin:0 auto; display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .tabs-inner::-webkit-scrollbar { display:none; }
+  .tab-btn { flex:1; min-width:90px; padding:14px 6px; font-size:11px; font-weight:600; color:var(--muted); background:none; border:none; border-bottom:2.5px solid transparent; cursor:pointer; letter-spacing:0.3px; white-space:nowrap; font-family:'DM Sans',sans-serif; transition:color .2s; }
+  .tab-btn.active { color:#1e3a26; border-bottom-color:#1e3a26; }
+
+  /* CONTENT */
+  .content { max-width:680px; margin:0 auto; padding:24px 16px 100px; }
+  .section-title { font-size:24px; margin-bottom:6px; }
+  .section-sub { font-size:13px; color:#666; line-height:1.65; margin-bottom:22px; }
+
+  /* CYCLE BANNER */
+  .cycle-banner { border-radius:16px; padding:18px 20px; margin-bottom:22px; }
+  .cycle-phase-label { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; margin-bottom:4px; }
+  .cycle-phase-name { font-size:22px; font-weight:700; margin-bottom:4px; }
+  .cycle-phase-days { font-size:12px; opacity:0.75; margin-bottom:10px; }
+  .cycle-phase-desc { font-size:13px; line-height:1.65; }
+  .cycle-mod-box { margin-top:14px; background:rgba(255,255,255,0.25); border-radius:10px; padding:12px 14px; }
+  .cycle-mod-title { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; }
+  .cycle-mod-item { font-size:13px; line-height:1.7; padding:2px 0; }
+
+  /* CYCLE SETUP */
+  .cycle-setup { background:#fff; border:1.5px solid var(--border); border-radius:14px; padding:18px 20px; margin-bottom:18px; }
+  .cycle-setup h3 { font-size:17px; margin-bottom:4px; }
+  .cycle-setup p { font-size:13px; color:#666; margin-bottom:14px; line-height:1.6; }
+  .form-row { display:flex; gap:12px; flex-wrap:wrap; align-items:flex-end; }
+  .form-group { flex:1; min-width:140px; }
+  .form-group label { display:block; font-size:11px; font-weight:600; color:#555; letter-spacing:0.5px; margin-bottom:6px; text-transform:uppercase; }
+  .form-group input[type="date"], .form-group input[type="number"] {
+    width:100%; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px;
+    font-size:14px; font-family:'DM Sans',sans-serif; background:#fafaf7; color:var(--text);
+    outline:none; transition:border-color .2s;
+  }
+  .form-group input:focus { border-color:#2e7d5c; }
+  .btn-primary { padding:10px 22px; background:#1e3a26; color:#fff; border:none; border-radius:8px; font-size:13px; font-weight:600; cursor:pointer; font-family:'DM Sans',sans-serif; white-space:nowrap; transition:background .2s; }
+  .btn-primary:hover { background:#2e7d5c; }
+
+  /* PHASE TIMELINE */
+  .phase-timeline { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:22px; }
+  .phase-tile { border-radius:12px; padding:12px 10px; text-align:center; cursor:default; }
+  .phase-tile.current { box-shadow:0 0 0 3px #1e3a26; }
+  .phase-tile-icon { font-size:20px; margin-bottom:4px; }
+  .phase-tile-name { font-size:11px; font-weight:700; }
+  .phase-tile-days { font-size:10px; opacity:0.7; margin-top:2px; }
+
+  /* DAY PICKER */
+  .day-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin-bottom:22px; }
+  .day-btn { padding:10px 4px; border-radius:12px; text-align:center; background:#fff; border:2px solid var(--border); color:#666; cursor:pointer; transition:transform .18s ease; font-family:'DM Sans',sans-serif; }
+  .day-btn:hover { transform:translateY(-3px); }
+  .day-btn.active { color:#fff; }
+  .day-btn-label { font-size:9px; font-weight:700; letter-spacing:0.8px; margin-bottom:4px; }
+  .day-btn-icon { font-size:17px; }
+
+  /* DAY CARD */
+  .day-card { border-radius:18px; overflow:hidden; margin-bottom:16px; border:2px solid rgba(0,0,0,0.06); }
+  .day-card-header { padding:18px 20px 14px; display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1px solid rgba(0,0,0,0.07); }
+  .day-card-eyebrow { font-size:10px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; margin-bottom:4px; }
+  .day-card-title { font-size:22px; font-weight:700; }
+  .day-tag { display:inline-block; font-size:9px; font-weight:700; padding:4px 11px; border-radius:20px; letter-spacing:1.2px; text-transform:uppercase; color:#fff; margin-bottom:5px; }
+  .day-duration { font-size:11px; color:#888; }
+  .ex-list { padding:10px 16px; }
+  .ex-row { padding:12px 8px; border-bottom:1px solid rgba(0,0,0,0.06); cursor:pointer; border-radius:10px; transition:background .15s; }
+  .ex-row:hover { background:rgba(0,0,0,0.03); }
+  .ex-row:last-child { border-bottom:none; }
+  .ex-row-top { display:flex; justify-content:space-between; align-items:center; }
+  .ex-name { font-size:14px; font-weight:500; color:#111; margin-bottom:2px; }
+  .ex-sets { font-size:12px; font-weight:600; }
+  .ex-chevron { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; transition:transform .2s; }
+  .ex-tip { margin-top:10px; padding:11px 14px; background:rgba(255,255,255,0.65); border-radius:10px; font-size:13px; color:#444; line-height:1.65; }
+  .tap-hint { font-size:12px; color:#aaa; text-align:center; }
+
+  /* CYCLE ADJUSTMENT BOX (in day card) */
+  .cycle-adj { margin:0 16px 14px; border-radius:10px; padding:12px 14px; font-size:13px; line-height:1.65; }
+  .cycle-adj-title { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px; }
+
+  /* KNEE / GEAR / PROGRESS cards */
+  .info-card { background:#fff; border:1.5px solid var(--border); border-radius:14px; padding:18px 20px; margin-bottom:16px; box-shadow:0 2px 8px rgba(0,0,0,0.04); transition:transform .2s,box-shadow .2s; }
+  .info-card:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.09); }
+  .info-card h3 { font-size:17px; margin-bottom:12px; }
+  .info-card-row { font-size:13px; color:#333; line-height:1.7; padding:7px 0; border-bottom:1px solid #f0f0e8; }
+  .info-card-row:last-child { border-bottom:none; }
+  .info-card-row strong { display:block; font-size:13px; color:#111; }
+  .info-card-row span { font-size:12px; color:#666; }
+
+  .dark-card { background:linear-gradient(135deg,#15271a,#1e3a26); border-radius:14px; padding:20px 22px; margin-top:8px; }
+  .dark-card h3 { color:#9fd4a7; font-size:17px; margin-bottom:10px; }
+  .dark-card p { color:#c8e6cc; font-size:13px; line-height:1.75; }
+
+  .prog-row { border-radius:14px; padding:18px 20px; margin-bottom:12px; border-left:4px solid; transition:transform .15s; }
+  .prog-row:hover { transform:translateX(4px); }
+  .prog-week-badge { font-size:10px; font-weight:700; padding:5px 12px; border-radius:8px; color:#fff; white-space:nowrap; letter-spacing:0.5px; display:inline-block; margin-bottom:8px; }
+  .prog-focus { font-size:17px; font-weight:700; margin-bottom:4px; }
+  .prog-desc { font-size:13px; color:#555; line-height:1.65; }
+
+  .week-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .week-tile { background:#fff; border:1.5px solid var(--border); border-radius:10px; padding:12px 14px; }
+  .week-tile-day { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:2px; }
+  .week-tile-name { font-size:13px; font-weight:500; color:#111; }
+  .week-tile-dur { font-size:11px; color:#aaa; margin-top:2px; }
+
+  .moti-box { background:#fffbee; border:2px solid #ffe08a; border-radius:14px; padding:20px 22px; margin-bottom:24px; }
+  .moti-box h3 { font-size:18px; color:#7a4e00; margin-bottom:12px; }
+  .moti-item { font-size:13px; color:#5a3a00; line-height:1.7; padding:7px 0; border-bottom:1px dashed #ffd890; }
+  .moti-item:last-child { border-bottom:none; }
+
+  /* PHASE COLORS */
+  .phase-menstrual { --pc:#c0392b; --pb:#fff5f5; --pborder:#f5c0c0; }
+  .phase-follicular { --pc:#2196F3; --pb:#e8f4fd; --pborder:#bbdefb; }
+  .phase-ovulation  { --pc:#e65100; --pb:#fff3e0; --pborder:#ffcc80; }
+  .phase-luteal     { --pc:#7b1fa2; --pb:#f3e5f5; --pborder:#ce93d8; }
+
+  @media(max-width:480px) {
+    .header h1 { font-size:26px; }
+    .phase-timeline { grid-template-columns:repeat(2,1fr); }
+    .form-row { flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-blob1"></div>
+  <div class="header-blob2"></div>
+  <div class="header-inner">
+    <p class="header-eyebrow">Personalised · 8-Week · Home Program</p>
+    <h1 class="pf">Her Strength &amp;<br><em>Wellness Plan</em></h1>
+    <p class="header-sub">Home · Pilates · Knee-Safe · No Gym · Cycle-Aware</p>
+    <div class="pills">
+      <div class="pill"><span>Age</span>27</div>
+      <div class="pill"><span>Height</span>5'4.5"</div>
+      <div class="pill"><span>Weight</span>63–65 kg</div>
+      <div class="pill"><span>Knee</span>Sensitive</div>
+      <div class="pill"><span>Cycle</span>Tracked ✨</div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tabs-inner">
+    <button class="tab-btn active" onclick="showTab('plan')">Weekly Plan</button>
+    <button class="tab-btn" onclick="showTab('cycle')">Cycle Phases</button>
+    <button class="tab-btn" onclick="showTab('knee')">Knee Care</button>
+    <button class="tab-btn" onclick="showTab('gear')">Equipment</button>
+    <button class="tab-btn" onclick="showTab('progress')">Progression</button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- ═══════════════════════════════════════════ PLAN TAB -->
+  <div id="tab-plan">
+    <!-- Cycle mini-banner (shown when cycle is set) -->
+    <div id="plan-cycle-banner" style="display:none; margin-bottom:18px;"></div>
+
+    <!-- Day Picker -->
+    <div class="day-grid" id="day-grid"></div>
+
+    <!-- Day Detail -->
+    <div id="day-detail"></div>
+    <p class="tap-hint">Tap any exercise to reveal form tips &amp; modifications</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ CYCLE TAB -->
+  <div id="tab-cycle" style="display:none">
+    <p class="pf section-title">Cycle Phase Tracker</p>
+    <p class="section-sub">Your cycle directly affects energy, strength, recovery and motivation. This tracker adjusts your workout recommendations day by day.</p>
+
+    <!-- Setup -->
+    <div class="cycle-setup">
+      <h3 class="pf">⚙️ Set Your Cycle</h3>
+      <p>Enter the first day of your last period and your average cycle length. You can update this any time.</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Day of Last Period</label>
+          <input type="date" id="cycle-start-input" />
+        </div>
+        <div class="form-group" style="max-width:140px">
+          <label>Cycle Length (days)</label>
+          <input type="number" id="cycle-length-input" value="28" min="21" max="40" />
+        </div>
+        <button class="btn-primary" onclick="saveCycle()">Save &amp; Track</button>
+      </div>
+    </div>
+
+    <!-- Phase Timeline -->
+    <div class="phase-timeline" id="phase-timeline"></div>
+
+    <!-- Phase Detail Cards -->
+    <div id="phase-cards"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ KNEE TAB -->
+  <div id="tab-knee" style="display:none">
+    <p class="pf section-title">Knee Care Protocol</p>
+    <p class="section-sub">Her knee is the #1 priority. Every exercise is designed to <em>protect</em> it while building the muscles that support it — these are not in conflict.</p>
+
+    <div style="background:#fff5f5;border:2px solid #f5c0c0;border-radius:14px;padding:18px 20px;margin-bottom:18px;">
+      <h3 class="pf" style="font-size:17px;color:#b92a2a;margin-bottom:14px;">🚨 Non-Negotiable Rules</h3>
+      <div class="info-card-row">🚫 Never fully lock or hyperextend the knee during any move</div>
+      <div class="info-card-row">⚠️ Stop squats at 90° — no deep squats until the knee is stronger</div>
+      <div class="info-card-row">🧊 Ice the knee 10 min after workout if any discomfort arises</div>
+      <div class="info-card-row">🛑 Pain = Stop. Do NOT push through knee pain — ever</div>
+      <div class="info-card-row">🩺 If pain persists beyond 2 weeks, see a physiotherapist</div>
+      <div class="info-card-row">💊 Continue multivitamins — add Vitamin D3 &amp; Omega-3 if possible</div>
+    </div>
+
+    <div style="background:#f0f8f2;border:2px solid #b8dfc4;border-radius:14px;padding:18px 20px;margin-bottom:18px;">
+      <h3 class="pf" style="font-size:17px;color:#1e5c38;margin-bottom:12px;">✅ Why This Plan Helps the Knee</h3>
+      <div class="info-card-row"><strong>Glute Bridges</strong><span>Strong glutes take load directly OFF the knee joint — the single most impactful move for knee pain.</span></div>
+      <div class="info-card-row"><strong>Clamshells</strong><span>Hip abductor strength prevents the knee from collapsing inward — a primary cause of chronic pain.</span></div>
+      <div class="info-card-row"><strong>Calf Raises</strong><span>Strong calves absorb shock during movement, reducing stress on the knee dramatically.</span></div>
+      <div class="info-card-row"><strong>Pilates Core</strong><span>A strong core stabilises the full body, including how forces travel through the knee on every step.</span></div>
+      <div class="info-card-row"><strong>Hip Flexor Stretches</strong><span>Tight hip flexors directly pull on the kneecap — stretching them is immediate pain relief.</span></div>
+      <div class="info-card-row"><strong>Active Recovery Walks</strong><span>Gentle movement pumps synovial fluid into knee cartilage. Better than complete rest.</span></div>
+    </div>
+
+    <div style="background:#fffbee;border:2px solid #ffe08a;border-radius:14px;padding:18px 20px;">
+      <h3 class="pf" style="font-size:17px;color:#8a5e00;margin-bottom:12px;">💊 Supplement Suggestions</h3>
+      <p style="font-size:13px;color:#5a4000;line-height:1.65;margin-bottom:10px;">She already takes multivitamins — great foundation. Consider adding:</p>
+      <div class="info-card-row"><strong>Vitamin D3 + K2</strong><span>Critical for bone density, immune function &amp; joint health. Most people are deficient.</span></div>
+      <div class="info-card-row"><strong>Omega-3 (Fish Oil)</strong><span>Potent natural anti-inflammatory. Directly reduces joint pain and swelling over time.</span></div>
+      <div class="info-card-row"><strong>Collagen Peptides</strong><span>Rebuilds cartilage. Best taken with Vitamin C for optimal absorption.</span></div>
+      <div class="info-card-row"><strong>Magnesium Glycinate</strong><span>Reduces muscle soreness and night cramps — especially useful for calves and legs.</span></div>
+      <p style="font-size:11px;color:#9a7030;margin-top:10px;">* Always confirm new supplements with a doctor.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ GEAR TAB -->
+  <div id="tab-gear" style="display:none">
+    <p class="pf section-title">Equipment Guide</p>
+    <p class="section-sub">She said no spending — and she largely doesn't have to. But two very affordable items would dramatically accelerate results and protect her knee.</p>
+
+    <div class="info-card" style="border-left:4px solid #b92a2a;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:28px;">🧘</span>
+          <div>
+            <div class="pf" style="font-size:16px;font-weight:700;">Yoga / Pilates Mat</div>
+            <div style="font-size:12px;color:#999;margin-top:2px;">~$8–12</div>
+          </div>
+        </div>
+        <span style="font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;background:#fff0f0;color:#b92a2a;letter-spacing:1px;text-transform:uppercase;">Essential</span>
+      </div>
+      <p style="font-size:13px;color:#555;line-height:1.65;">Protects joints during all floor work — non-negotiable for a sensitive knee. All Pilates and floor exercises require this.</p>
+    </div>
+
+    <div class="info-card" style="border-left:4px solid #1a5ca8;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:28px;">🔁</span>
+          <div>
+            <div class="pf" style="font-size:16px;font-weight:700;">Resistance Bands (set of 3)</div>
+            <div style="font-size:12px;color:#999;margin-top:2px;">~$7–12</div>
+          </div>
+        </div>
+        <span style="font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;background:#eff6ff;color:#1a4e8a;letter-spacing:1px;text-transform:uppercase;">High Value</span>
+      </div>
+      <p style="font-size:13px;color:#555;line-height:1.65;">Replaces gym machines entirely for legs, glutes, arms &amp; back. Fully knee-safe and ideal for home Pilates progressions.</p>
+    </div>
+
+    <div class="info-card" style="border-left:4px solid #2e7d5c;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:28px;">💧</span>
+          <div>
+            <div class="pf" style="font-size:16px;font-weight:700;">2 × Water Bottles (filled 1L)</div>
+            <div style="font-size:12px;color:#999;margin-top:2px;">Free — you already have them</div>
+          </div>
+        </div>
+        <span style="font-size:10px;font-weight:700;padding:4px 11px;border-radius:20px;background:#f0fbf0;color:#1a6a2a;letter-spacing:1px;text-transform:uppercase;">Free</span>
+      </div>
+      <p style="font-size:13px;color:#555;line-height:1.65;">Instant light dumbbells for all upper body strength work — bicep curls, rows, shoulder work. No purchase needed.</p>
+    </div>
+
+    <div class="dark-card">
+      <h3 class="pf">💡 The Honest Ask</h3>
+      <p>A mat + resistance bands together cost less than one delivery order — and they'll be used every single week for years. They're the only items that truly matter. The water bottles she already has cover all dumbbell needs completely.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ PROGRESS TAB -->
+  <div id="tab-progress" style="display:none">
+    <p class="pf section-title">8-Week Progression</p>
+    <p class="section-sub">The plan builds slowly — because she's reluctant, and that's completely okay. Small wins compound into lasting transformation.</p>
+
+    <div class="prog-row" style="background:#e8f5ee;border-color:#2e7d5c;">
+      <div class="prog-week-badge" style="background:#2e7d5c;">Week 1–2</div>
+      <div class="pf prog-focus">Form &amp; Habit</div>
+      <div class="prog-desc">Focus entirely on correct form, not intensity. Three sessions will feel hard — that's completely normal and expected.</div>
+    </div>
+    <div class="prog-row" style="background:#eef4fc;border-color:#1a5ca8;">
+      <div class="prog-week-badge" style="background:#1a5ca8;">Week 3–4</div>
+      <div class="pf prog-focus">Add Reps</div>
+      <div class="prog-desc">Add 2–3 reps to each set where it feels easy. Plank holds extend by 10 seconds. Knee should feel noticeably more stable.</div>
+    </div>
+    <div class="prog-row" style="background:#f7f0fc;border-color:#6a1b9a;">
+      <div class="prog-week-badge" style="background:#6a1b9a;">Week 5–6</div>
+      <div class="pf prog-focus">Add Sets</div>
+      <div class="prog-desc">Add a 4th set to your favourite exercises. Introduce resistance bands if purchased — complete game changer for legs and glutes.</div>
+    </div>
+    <div class="prog-row" style="background:#fffbee;border-color:#9a6000;">
+      <div class="prog-week-badge" style="background:#9a6000;">Week 7–8</div>
+      <div class="pf prog-focus">Full Intensity</div>
+      <div class="prog-desc">Circuits feel manageable. Push-ups progress toward full (not on knees). Visible strength gains. Celebrate every win — they're real.</div>
+    </div>
+
+    <div class="moti-box" style="margin-top:8px;">
+      <h3 class="pf">🌟 For the Reluctant Starter</h3>
+      <div class="moti-item">The first two weeks will feel hard. That's NOT a sign it isn't working — it means it is.</div>
+      <div class="moti-item">She doesn't need to feel motivated to start. She just needs to start. Motivation follows action, always.</div>
+      <div class="moti-item">Missing one day is human. Missing three in a row is a pattern. Get back on day two — always.</div>
+      <div class="moti-item">Track one simple thing: did I do it today? Yes or no. No calorie counting, no weight obsession needed.</div>
+      <div class="moti-item">Her knee will get STRONGER with this plan — not worse. Pain-free, capable movement is the real goal.</div>
+    </div>
+
+    <h3 class="pf" style="font-size:18px;margin-bottom:14px;">📅 Weekly at a Glance</h3>
+    <div class="week-grid" id="week-grid"></div>
+  </div>
+
+</div><!-- /content -->
+
+<script>
+// ══════════════════════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════════════════════
+const WEEK = [
+  {
+    day:"MON", full:"Monday", label:"Lower Body Strength", tag:"Strength", duration:"35 min",
+    color:"#2e7d5c", bg:"linear-gradient(135deg,#e8f5ee,#d4edde)", icon:"💪",
+    exercises:[
+      {name:"Wall Sit", sets:"3 × 20–30 sec", tip:"Back flat on wall, stop at 90°. Builds quads without knee strain."},
+      {name:"Glute Bridges", sets:"3 × 15 reps", tip:"Lie on back, drive hips to ceiling. Most important move for knee stability."},
+      {name:"Clamshells", sets:"3 × 15 each side", tip:"Side-lying with knees stacked. Strengthens hips = protects knee from collapsing inward."},
+      {name:"Standing Rear Leg Raises", sets:"3 × 12 each leg", tip:"Hold chair for balance. Targets glutes without bending the knee at all."},
+      {name:"Slow Calf Raises", sets:"3 × 20 reps", tip:"Use wall for support. 3 seconds down — slow eccentrics strengthen the calf faster."},
+    ]
+  },
+  {
+    day:"TUE", full:"Tuesday", label:"Pilates Core", tag:"Pilates", duration:"30 min",
+    color:"#a0293e", bg:"linear-gradient(135deg,#fdf0f3,#fce4ec)", icon:"🧘",
+    exercises:[
+      {name:"Pilates Hundred (Modified)", sets:"Build to 100 pumps", tip:"Keep legs in tabletop (90°) — never straighten past comfort. Arms pump by your sides."},
+      {name:"Single Leg Stretch", sets:"3 × 10 each side", tip:"Core + hip flexors. Only extend leg as far as completely pain-free."},
+      {name:"Spine Twist (Seated)", sets:"3 × 8 each side", tip:"Sit tall, arms wide. Improves spinal mobility and counteracts bad posture."},
+      {name:"Swan Prep / Baby Cobra", sets:"3 × 10 reps", tip:"Lie face down, press up on forearms only. Strengthens the entire back chain."},
+      {name:"Cat-Cow Flow", sets:"2 × 10 breaths", tip:"Slow spinal mobility warm-down. Breathe into each position deeply."},
+    ]
+  },
+  {
+    day:"WED", full:"Wednesday", label:"Upper Body Strength", tag:"Strength", duration:"35 min",
+    color:"#1a5ca8", bg:"linear-gradient(135deg,#eef4fc,#dce9f8)", icon:"💪",
+    exercises:[
+      {name:"Push-Ups (Knee or Full)", sets:"3 × 8–12 reps", tip:"Start on knees — that's completely valid. Progress to full push-ups by week 4–5."},
+      {name:"Pike Push-Ups", sets:"3 × 8 reps", tip:"Body forms an inverted V. Targets shoulders & upper back — no knee involvement."},
+      {name:"Tricep Dips (sturdy chair)", sets:"3 × 10 reps", tip:"Fingers forward, elbows pointing back, close to body. Controlled movement throughout."},
+      {name:"Bottle Bicep Curls", sets:"3 × 12 reps", tip:"Use two filled 1L bottles. 2-second hold at top, slow back down."},
+      {name:"Bent-Over Row (bottles)", sets:"3 × 12 reps", tip:"Hinge at hips, flat back, neck neutral. Targets mid and upper back — key for posture."},
+    ]
+  },
+  {
+    day:"THU", full:"Thursday", label:"Active Recovery", tag:"Recovery", duration:"20 min",
+    color:"#9a6000", bg:"linear-gradient(135deg,#fffbee,#fff3cc)", icon:"🌿",
+    exercises:[
+      {name:"Flat Surface Walk", sets:"10 min, easy pace", tip:"No hills or stairs. Gentle movement pumps fluid into knee cartilage — better than rest."},
+      {name:"Hip Flexor Stretch (Low Lunge)", sets:"2 × 30 sec each side", tip:"Kneeling lunge. Tight hip flexors directly pull on the knee — stretch them daily."},
+      {name:"Standing Quad Stretch", sets:"2 × 30 sec each side", tip:"Hold wall. Never force the knee into full bend. Gentle pull only."},
+      {name:"Lying Hamstring Stretch", sets:"2 × 30 sec each side", tip:"Use a towel or belt around foot. Tight hamstrings are a major knee pain contributor."},
+      {name:"Child's Pose", sets:"2 × 1 min", tip:"Place a rolled towel behind knees if they protest. Full spinal and hip release."},
+    ]
+  },
+  {
+    day:"FRI", full:"Friday", label:"Full Body Circuit", tag:"Circuit", duration:"40 min",
+    color:"#6a1b9a", bg:"linear-gradient(135deg,#f7f0fc,#ede0f8)", icon:"⚡",
+    exercises:[
+      {name:"March on Spot (warm-up)", sets:"3 min", tip:"Lift knees gently and rhythmically. Gets heart rate up with zero knee impact."},
+      {name:"Modified Burpee (no jump)", sets:"3 × 8 reps", tip:"Step back one foot at a time instead of jumping. Full body burn, zero knee stress."},
+      {name:"Lateral Squat Steps", sets:"3 × 10 each side", tip:"Step side to side in a mini-squat position. Activates glutes and knee stabilisers."},
+      {name:"Forearm Plank", sets:"3 × 20–40 sec", tip:"Core powerhouse. Hips level, breathe steadily. Build to 60 seconds by week 4."},
+      {name:"Superman Hold", sets:"3 × 10 reps", tip:"Lie face down, lift opposite arm and leg. Counteracts desk/phone posture beautifully."},
+    ]
+  },
+  {
+    day:"SAT", full:"Saturday", label:"Pilates Power", tag:"Pilates", duration:"35 min",
+    color:"#a0293e", bg:"linear-gradient(135deg,#fdf0f3,#fce4ec)", icon:"🧘",
+    exercises:[
+      {name:"Roll-Up", sets:"3 × 8 reps", tip:"Slow spinal articulation. Use hands on thighs to guide if needed. Deep abs work."},
+      {name:"Leg Circles (Lying)", sets:"3 × 8 each leg", tip:"Small circles to start. Hip socket mobility — keep knee soft, never locked."},
+      {name:"Side-Lying Leg Lifts", sets:"3 × 12 each side", tip:"Outer thigh and hip strengthener. Keep the top leg parallel to the floor."},
+      {name:"Pilates Swimming", sets:"3 × 10 reps", tip:"Alternate opposite arm and leg. Back strength, coordination and balance all at once."},
+      {name:"Seated Forward Fold", sets:"2 × 1 min", tip:"Breathe deeply into the hamstrings and lower back. Never force — just release."},
+    ]
+  },
+  {
+    day:"SUN", full:"Sunday", label:"Complete Rest", tag:"Rest", duration:"—",
+    color:"#546e7a", bg:"linear-gradient(135deg,#f4f7f8,#eceff1)", icon:"😴",
+    exercises:[
+      {name:"Complete Rest", sets:"—", tip:"Muscles are built during rest. This day is non-negotiable — protect it fiercely."},
+      {name:"Box Breathing (optional)", sets:"5 min", tip:"Inhale 4s · Hold 4s · Exhale 4s · Hold 4s. Reduces cortisol and aids recovery."},
+      {name:"Light Reading or Walking", sets:"—", tip:"Mental recovery is as important as physical. Protect motivation by resting fully."},
+    ]
+  },
+];
+
+const PHASES = [
+  {
+    id:"menstrual", name:"Menstrual", icon:"🌑", dayRange:[1,5],
+    colors:{bg:"#fff5f5", border:"#f5c0c0", accent:"#c0392b", text:"#7a0000"},
+    tagline:"Rest & Restore",
+    desc:"Hormone levels (oestrogen & progesterone) are at their lowest. Energy is reduced, pain sensitivity is higher — including in the knee. This is not the time to push.",
+    workout:{
+      intensity:"Low — 50–60% of normal",
+      focus:"Gentle Pilates, stretching, walking",
+      adjustments:[
+        "✅ Keep all sessions — shorten to 15–20 min if needed",
+        "✅ Focus on Cat-Cow, Child's Pose, Seated Twists",
+        "✅ Gentle walking only — flat surface, easy pace",
+        "⚠️ Skip the circuit (Friday) — replace with gentle stretching",
+        "⚠️ Knee may feel more sensitive — reduce sets by 1 on leg days",
+        "❌ Avoid high effort or pushing through fatigue today",
+      ],
+      selfCare:"Heat pad on lower abdomen helps. Magnesium can reduce cramps. Rest fully if cramping is severe — one rest day won't derail progress.",
+    }
+  },
+  {
+    id:"follicular", name:"Follicular", icon:"🌒", dayRange:[6,13],
+    colors:{bg:"#e8f4fd", border:"#bbdefb", accent:"#1565c0", text:"#003a70"},
+    tagline:"Build & Energise",
+    desc:"Oestrogen rises steadily. Energy, motivation and strength all increase. This is your best window for building strength and tackling harder sessions.",
+    workout:{
+      intensity:"Moderate–High — peak performance window",
+      focus:"Strength training, Pilates, full circuits",
+      adjustments:[
+        "✅ This is the BEST week to push reps and sets",
+        "✅ Try progressing push-ups from knees to full",
+        "✅ Add an extra set to glute bridges and calf raises",
+        "✅ Circuits feel more manageable — take advantage",
+        "✅ Knee will feel more stable — ideal to assess progress",
+        "💪 If any week to go harder — this is the one",
+      ],
+      selfCare:"Prioritise protein after strength sessions — muscles rebuild faster in this phase. Sleep quality improves naturally too.",
+    }
+  },
+  {
+    id:"ovulation", name:"Ovulation", icon:"🌕", dayRange:[14,16],
+    colors:{bg:"#fff3e0", border:"#ffcc80", accent:"#e65100", text:"#7a3000"},
+    tagline:"Peak Power",
+    desc:"Oestrogen and testosterone both peak. Strength and pain tolerance are at their highest. A short but powerful window — use it well.",
+    workout:{
+      intensity:"High — peak strength & coordination",
+      focus:"Strength, circuits, balance challenges",
+      adjustments:[
+        "✅ Absolute peak for strength — attempt personal bests on sets",
+        "✅ Try full push-ups, longer planks, more circuit rounds",
+        "✅ Balance exercises feel easier — add single-leg work",
+        "✅ Great time to try new movements and progressions",
+        "⚠️ Ligament laxity peaks here — warm up the knee thoroughly",
+        "⚠️ Don't skip the knee warm-up — injury risk is slightly higher",
+      ],
+      selfCare:"Ligament laxity is real during ovulation — always do the 5-min warm-up, especially before leg sessions. Stay hydrated.",
+    }
+  },
+  {
+    id:"luteal", name:"Luteal", icon:"🌘", dayRange:[17,28],
+    colors:{bg:"#f3e5f5", border:"#ce93d8", accent:"#7b1fa2", text:"#4a0072"},
+    tagline:"Steady & Mindful",
+    desc:"Progesterone rises, oestrogen drops slightly. Energy becomes more variable. Mood and motivation may dip. This is about consistency over intensity.",
+    workout:{
+      intensity:"Moderate — steady, mindful movement",
+      focus:"Pilates, recovery, steady strength",
+      adjustments:[
+        "✅ Pilates sessions feel especially good in this phase",
+        "✅ Keep strength sessions but don't pressure yourself to PR",
+        "✅ Add an extra stretching/recovery day if fatigue hits",
+        "⚠️ Bloating may affect how core exercises feel — that's normal",
+        "⚠️ If PMS symptoms are strong, swap circuit for Pilates",
+        "❌ Don't skip entirely — movement actually reduces PMS symptoms",
+      ],
+      selfCare:"Cravings for carbs are hormonal and real. Focus on complex carbs (oats, sweet potato) over processed. Magnesium helps with mood dips and cramps in late luteal.",
+    }
+  },
+];
+
+// ══════════════════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════════════════
+let activeDay = 0;
+let expandedEx = null;
+let cycleStart = null;
+let cycleLength = 28;
+
+// Load from localStorage
+(function init() {
+  const saved = localStorage.getItem('herwp_cycle');
+  if (saved) {
+    const d = JSON.parse(saved);
+    cycleStart = new Date(d.start);
+    cycleLength = d.length;
+    if (document.getElementById('cycle-start-input')) {
+      document.getElementById('cycle-start-input').value = d.start;
+      document.getElementById('cycle-length-input').value = d.length;
+    }
+  }
+  renderDayGrid();
+  renderDayDetail();
+  renderWeekGrid();
+  renderPhaseTimeline();
+  renderPhaseCards();
+  renderPlanCycleBanner();
+})();
+
+// ══════════════════════════════════════════════════════════
+// TABS
+// ══════════════════════════════════════════════════════════
+function showTab(id) {
+  ['plan','cycle','knee','gear','progress'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = t === id ? '' : 'none';
+  });
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    b.classList.toggle('active', ['plan','cycle','knee','gear','progress'][i] === id);
+  });
+}
+
+// ══════════════════════════════════════════════════════════
+// CYCLE
+// ══════════════════════════════════════════════════════════
+function saveCycle() {
+  const startVal = document.getElementById('cycle-start-input').value;
+  const lenVal = parseInt(document.getElementById('cycle-length-input').value) || 28;
+  if (!startVal) { alert('Please enter the first day of your last period.'); return; }
+  cycleStart = new Date(startVal);
+  cycleLength = Math.max(21, Math.min(40, lenVal));
+  localStorage.setItem('herwp_cycle', JSON.stringify({start: startVal, length: cycleLength}));
+  renderPhaseTimeline();
+  renderPhaseCards();
+  renderPlanCycleBanner();
+  renderDayDetail();
+}
+
+function getCurrentCycleDay() {
+  if (!cycleStart) return null;
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const start = new Date(cycleStart);
+  start.setHours(0,0,0,0);
+  let diff = Math.floor((today - start) / 86400000);
+  diff = ((diff % cycleLength) + cycleLength) % cycleLength;
+  return diff + 1; // 1-indexed
+}
+
+function getPhaseForDay(dayNum) {
+  for (const p of PHASES) {
+    const [s, e] = p.dayRange;
+    const end = p.id === 'luteal' ? cycleLength : e;
+    if (dayNum >= s && dayNum <= end) return p;
+  }
+  return PHASES[3];
+}
+
+function getCurrentPhase() {
+  const d = getCurrentCycleDay();
+  if (!d) return null;
+  return getPhaseForDay(d);
+}
+
+// ══════════════════════════════════════════════════════════
+// RENDER: PLAN TAB
+// ══════════════════════════════════════════════════════════
+function renderPlanCycleBanner() {
+  const el = document.getElementById('plan-cycle-banner');
+  const phase = getCurrentPhase();
+  if (!phase) { el.style.display = 'none'; return; }
+  const dayNum = getCurrentCycleDay();
+  el.style.display = '';
+  el.innerHTML = `
+    <div style="background:${phase.colors.bg};border:2px solid ${phase.colors.border};border-radius:14px;padding:16px 18px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
+        <div>
+          <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${phase.colors.accent};margin-bottom:3px;">Today · Cycle Day ${dayNum}</div>
+          <div class="pf" style="font-size:18px;color:${phase.colors.text};">${phase.icon} ${phase.name} Phase — <em>${phase.tagline}</em></div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.5);border-radius:10px;padding:10px 12px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:${phase.colors.accent};margin-bottom:6px;">Today's Workout Adjustments</div>
+        ${phase.workout.adjustments.slice(0,3).map(a=>`<div style="font-size:13px;color:${phase.colors.text};line-height:1.7;">${a}</div>`).join('')}
+        <div style="font-size:11px;color:${phase.colors.accent};margin-top:6px;font-style:italic;">→ See Cycle Phases tab for full guidance</div>
+      </div>
+    </div>`;
+}
+
+function renderDayGrid() {
+  const el = document.getElementById('day-grid');
+  el.innerHTML = WEEK.map((d,i) => `
+    <button class="day-btn ${i===activeDay?'active':''}" onclick="selectDay(${i})"
+      style="${i===activeDay?`background:${d.color};border-color:${d.color};`:''}">
+      <div class="day-btn-label">${d.day}</div>
+      <div class="day-btn-icon">${d.icon}</div>
+    </button>`).join('');
+}
+
+function selectDay(i) {
+  activeDay = i;
+  expandedEx = null;
+  renderDayGrid();
+  renderDayDetail();
+}
+
+function toggleEx(i) {
+  expandedEx = expandedEx === i ? null : i;
+  renderDayDetail();
+}
+
+function renderDayDetail() {
+  const d = WEEK[activeDay];
+  const phase = getCurrentPhase();
+  let cycleAdj = '';
+  if (phase) {
+    cycleAdj = `
+      <div class="cycle-adj" style="background:${phase.colors.bg};border-left:3px solid ${phase.colors.accent};">
+        <div class="cycle-adj-title" style="color:${phase.colors.accent};">${phase.icon} ${phase.name} Phase Adjustment · ${phase.tagline}</div>
+        <div style="font-size:12px;color:${phase.colors.text};font-weight:600;margin-bottom:4px;">Intensity: ${phase.workout.intensity}</div>
+        ${phase.workout.adjustments.slice(0,3).map(a=>`<div style="font-size:12px;color:${phase.colors.text};line-height:1.7;">${a}</div>`).join('')}
+      </div>`;
+  }
+  const exHtml = d.exercises.map((ex,i) => `
+    <div class="ex-row" onclick="toggleEx(${i})">
+      <div class="ex-row-top">
+        <div>
+          <div class="ex-name">${ex.name}</div>
+          <div class="ex-sets" style="color:${d.color};">${ex.sets}</div>
+        </div>
+        <div class="ex-chevron" style="background:${d.color}18;color:${d.color};transform:${expandedEx===i?'rotate(180deg)':'none'};">▾</div>
+      </div>
+      ${expandedEx===i?`<div class="ex-tip" style="border-left:3px solid ${d.color};">💡 ${ex.tip}</div>`:''}
+    </div>`).join('');
+
+  document.getElementById('day-detail').innerHTML = `
+    <div class="day-card" style="background:${d.bg};">
+      <div class="day-card-header">
+        <div>
+          <div class="day-card-eyebrow" style="color:${d.color};">${d.full}</div>
+          <div class="pf day-card-title">${d.label}</div>
+        </div>
+        <div style="text-align:right;">
+          <div class="day-tag" style="background:${d.color};">${d.tag}</div>
+          <div class="day-duration">⏱ ${d.duration}</div>
+        </div>
+      </div>
+      ${cycleAdj}
+      <div class="ex-list">${exHtml}</div>
+    </div>`;
+}
+
+// ══════════════════════════════════════════════════════════
+// RENDER: CYCLE TAB
+// ══════════════════════════════════════════════════════════
+function renderPhaseTimeline() {
+  const el = document.getElementById('phase-timeline');
+  const currentPhase = getCurrentPhase();
+  el.innerHTML = PHASES.map(p => {
+    const isCurrent = currentPhase && currentPhase.id === p.id;
+    const endDay = p.id === 'luteal' ? cycleLength : p.dayRange[1];
+    return `
+      <div class="phase-tile ${isCurrent?'current':''}"
+        style="background:${p.colors.bg};border:2px solid ${isCurrent?p.colors.accent:p.colors.border};">
+        <div class="phase-tile-icon">${p.icon}</div>
+        <div class="phase-tile-name pf" style="color:${p.colors.text};">${p.name}</div>
+        <div class="phase-tile-days" style="color:${p.colors.accent};">Days ${p.dayRange[0]}–${endDay}</div>
+        ${isCurrent?`<div style="font-size:9px;font-weight:700;color:${p.colors.accent};margin-top:4px;letter-spacing:1px;">YOU ARE HERE</div>`:''}
+      </div>`;
+  }).join('');
+}
+
+function renderPhaseCards() {
+  const el = document.getElementById('phase-cards');
+  const currentPhase = getCurrentPhase();
+  const dayNum = getCurrentCycleDay();
+  el.innerHTML = PHASES.map(p => {
+    const isCurrent = currentPhase && currentPhase.id === p.id;
+    const endDay = p.id === 'luteal' ? cycleLength : p.dayRange[1];
+    return `
+      <div style="background:${p.colors.bg};border:2px solid ${isCurrent?p.colors.accent:p.colors.border};border-radius:16px;padding:20px;margin-bottom:16px;${isCurrent?`box-shadow:0 4px 16px ${p.colors.accent}30;`:''}" >
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+          <div>
+            <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${p.colors.accent};margin-bottom:3px;">
+              Days ${p.dayRange[0]}–${endDay} ${isCurrent?'· <strong>CURRENT PHASE</strong>':''}
+            </div>
+            <div class="pf" style="font-size:20px;color:${p.colors.text};">${p.icon} ${p.name} — <em>${p.tagline}</em></div>
+          </div>
+          ${isCurrent&&dayNum?`<div style="background:${p.colors.accent};color:#fff;border-radius:8px;padding:5px 12px;font-size:11px;font-weight:700;white-space:nowrap;">Day ${dayNum}</div>`:''}
+        </div>
+        <p style="font-size:13px;color:${p.colors.text};line-height:1.65;margin-bottom:14px;">${p.desc}</p>
+        <div style="background:rgba(255,255,255,0.5);border-radius:12px;padding:14px 16px;margin-bottom:12px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:${p.colors.accent};margin-bottom:8px;">💪 Workout Adjustments</div>
+          <div style="font-size:12px;font-weight:600;color:${p.colors.text};margin-bottom:6px;">Intensity: ${p.workout.intensity}</div>
+          ${p.workout.adjustments.map(a=>`<div style="font-size:13px;color:${p.colors.text};line-height:1.75;padding:2px 0;">${a}</div>`).join('')}
+        </div>
+        <div style="background:rgba(255,255,255,0.4);border-radius:10px;padding:12px 14px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:${p.colors.accent};margin-bottom:6px;">🌿 Self-Care This Phase</div>
+          <div style="font-size:13px;color:${p.colors.text};line-height:1.65;">${p.workout.selfCare}</div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════════════════
+// RENDER: WEEK GRID (Progress Tab)
+// ══════════════════════════════════════════════════════════
+function renderWeekGrid() {
+  document.getElementById('week-grid').innerHTML = WEEK.map(d=>`
+    <div class="week-tile" style="border-left:4px solid ${d.color};">
+      <div class="week-tile-day" style="color:${d.color};">${d.day}</div>
+      <div class="week-tile-name">${d.label}</div>
+      <div class="week-tile-dur">${d.duration}</div>
+    </div>`).join('');
+}
+</script>
+</body>
+</html>
